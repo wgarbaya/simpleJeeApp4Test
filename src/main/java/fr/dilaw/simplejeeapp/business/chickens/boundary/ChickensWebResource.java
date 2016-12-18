@@ -42,7 +42,7 @@ public class ChickensWebResource extends HttpServlet {
             cs.save(new Chicken(name, age));
             
         }  
-        doGet(request, response); //TO DO: transform to ajax
+//        doGet(request, response); //TO DO: transform to ajax
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
