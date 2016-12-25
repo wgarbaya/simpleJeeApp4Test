@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
-@NamedQuery(name = "getById", query = "select f from Farm where name = :name")
+@NamedQuery(name = "getById", query = "select f from Farm  f where name = :name")
 public class Farm implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -37,7 +37,7 @@ public class Farm implements Serializable{
     }
 
     public Farm(String name) {
-        this.name = name;
+        this.name = name; 
     }
 
     public Farm() {

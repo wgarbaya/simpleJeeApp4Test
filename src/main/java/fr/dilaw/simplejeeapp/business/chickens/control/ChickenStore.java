@@ -19,7 +19,7 @@ public class ChickenStore {
     EntityManager em;
     
     public void save(Chicken ck){
-        em.merge(ck);
+        em.persist(ck);
     }
     public List<Chicken> all(){
         return this.em.createNamedQuery("all", Chicken.class).getResultList();

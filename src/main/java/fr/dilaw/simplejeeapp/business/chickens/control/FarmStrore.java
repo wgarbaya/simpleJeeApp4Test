@@ -18,11 +18,12 @@ public class FarmStrore {
     EntityManager em;
     
     public void save(Farm fr){
-        em.merge(fr);
+        em.persist(fr);
     }
 
     public Farm getByName(String name) {
         return (Farm) em.createNamedQuery("getById").setParameter("name", name).getSingleResult();
     }
+
    
 }

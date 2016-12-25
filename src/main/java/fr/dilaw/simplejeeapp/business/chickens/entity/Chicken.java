@@ -31,7 +31,7 @@ public class Chicken {
     private int age;
     private String name;
     
-    @ManyToOne(cascade = {CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Farm farm;
     
     public long getId() {

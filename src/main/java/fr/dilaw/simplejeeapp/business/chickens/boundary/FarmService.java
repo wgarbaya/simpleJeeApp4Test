@@ -17,14 +17,18 @@ import javax.inject.Inject;
 @Stateless
 public class FarmService {
     
-    @Inject
+    @Inject 
     FarmStrore fs;
-    
+   
     public void save(Farm fr){
          fs.save(fr);
     }
 
-    Farm getByName(String name) {
+    public Farm getByName(String name) {
         return fs.getByName(name);
+    }
+
+    public void  create(Farm farm) {
+        fs.save(farm);
     }
 }
