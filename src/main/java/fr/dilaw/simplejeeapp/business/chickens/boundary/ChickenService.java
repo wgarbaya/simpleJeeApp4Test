@@ -7,6 +7,7 @@ package fr.dilaw.simplejeeapp.business.chickens.boundary;
 
 import fr.dilaw.simplejeeapp.business.chickens.control.ChickenStore;
 import fr.dilaw.simplejeeapp.business.chickens.entity.Chicken;
+import fr.dilaw.simplejeeapp.business.chickens.entity.Farm;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,10 +20,20 @@ import javax.inject.Inject;
 public class ChickenService {
     @Inject
     ChickenStore cs;
+    
+    @Inject
+    FarmService fs;
+    
     public List<Chicken> getAllChickens(){
         return this.cs.all();
     }
     public void save(Chicken chicken){
+            if  (chicken.getFarm() != null && chicken.getFarm().getId() == 0){
+                Farm ne = fs.getByName(chicken.getFarm().getName());
+                chicken.setFarm(ne);
+            }
         this.cs.save(chicken);
+        
     }
+    
 }
