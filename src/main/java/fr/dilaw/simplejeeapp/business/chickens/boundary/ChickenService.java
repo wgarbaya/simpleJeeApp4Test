@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package fr.dilaw.simplejeeapp.business.chickens.boundary;
 
 import fr.dilaw.simplejeeapp.business.chickens.control.ChickenStore;
@@ -18,6 +18,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ChickenService {
+    
     @Inject
     ChickenStore cs;
     
@@ -27,13 +28,15 @@ public class ChickenService {
     public List<Chicken> getAllChickens(){
         return this.cs.all();
     }
+    public Chicken _save(Chicken chicken){
+        if  (chicken.getFarm() != null && chicken.getFarm().getId() == 0){
+            Farm ne = fs.getByName(chicken.getFarm().getName());
+            chicken.setFarm(ne);
+        }
+        return chicken;
+    }
     public void save(Chicken chicken){
-            if  (chicken.getFarm() != null && chicken.getFarm().getId() == 0){
-                Farm ne = fs.getByName(chicken.getFarm().getName());
-                chicken.setFarm(ne);
-            }
-        this.cs.save(chicken);
-        
+        this.cs.save(_save(chicken));
     }
     
 }

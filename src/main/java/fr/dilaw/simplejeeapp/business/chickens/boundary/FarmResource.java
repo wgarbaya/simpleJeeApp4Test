@@ -10,6 +10,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 
 /**
  *
@@ -17,6 +20,7 @@ import javax.inject.Inject;
  */
 @Startup
 @Singleton
+@Path("Farm")
 public class FarmResource {
     
     @Inject
@@ -24,18 +28,17 @@ public class FarmResource {
 
     public FarmResource() {
     }
-
-
-    public FarmService getFs() {
-        return fs;
+    
+    @POST
+    @Path("add")
+    @Consumes("application/json")
+    public void addFarm(Farm nwFarm){
+        fs.create(nwFarm); 
     }
+    
+    
 
-    public void setFs(FarmService fs) {
-        this.fs = fs; 
-    }
-   
-   @PostConstruct
+  /** @PostConstruct
     void atStartup(){
-        fs.create(new Farm("Cereix")); 
-    }
+    **/
 }

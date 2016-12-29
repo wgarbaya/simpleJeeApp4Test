@@ -27,9 +27,6 @@ public class ChickensResource {
     @Inject
     ChickenService cs;
     
-    @Inject
-    FarmService fs;
-    
     @GET
     @Path("list")
     @Produces("application/json")
@@ -41,12 +38,10 @@ public class ChickensResource {
     @Path("add")
     @Consumes("application/json")
     public void save(JsonObject jchicken){
-        String name = jchicken.getString("name");
-        int age = jchicken.getInt("age");
-        Chicken c = new Chicken(name,age);
-        Optional<String> ofarm = Optional.ofNullable(jchicken.getString("farmName", null));
-        if (ofarm.isPresent()){
-        c.setFarm(new Farm(ofarm.get()));
+        Chicken c = new Chicken(jchicken.getString("name"),jchicken.getInt("age"));
+        Optional<String> oSFarmName = Optional.ofNullable(jchicken.getString("farmName", null));
+        if (oSFarmName.isPresent()){
+        c.setFarm(new Farm(oSFarmName.get()));
         }
         cs.save(c);
     }

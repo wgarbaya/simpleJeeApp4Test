@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Garbaya
  */
 @WebServlet(urlPatterns = "/web/Chickens", loadOnStartup = 1)
-//@ApplicationPath("web/Chickens")
 public class ChickensWebResource extends HttpServlet {
 
     @Inject
